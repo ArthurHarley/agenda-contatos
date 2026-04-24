@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="card">
+    <h1>Adicionar Contato</h1>
+
+    <form [formGroup]="formAluno" (ngSubmit)="cadastrar()">
+
+      <!-- Nome -->
+      <div class="campo">
+        <label>Nome Completo *</label>
+        <input type="text" formControlName="nome">
+        <small *ngIf="formAluno.get('nome')?.invalid && formAluno.get('nome')?.touched">
+          Nome inválido (mínimo 3 caracteres)
+        </small>
+      </div>
+
+      <!-- Email -->
+      <div class="campo">
+        <label>E-mail *</label>
+        <input type="email" formControlName="email">
+        <small *ngIf="formAluno.get('email')?.invalid && formAluno.get('email')?.touched">
+          E-mail inválido
+        </small>
+      </div>
+      
+      <!-- Telefones -->
+      <div class="campo">
+        <label>Telefones *</label>
+
+        <div formArrayName="telefones">
+          <div *ngFor="let tel of telefones.controls; let i = index"
+              [formGroupName]="i"
+              style="display: flex; flex-direction: column; margin-bottom: 8px;">
+
+            <!-- Linha: input + botão -->
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <input type="text"
+                    formControlName="numero"
+                    placeholder="Digite o telefone"
+                    style="flex: 1;">
+
+              <button type="button"
+                      (click)="removerTelefone(i)"
+                      *ngIf="telefones.length > 1"
+                      style="width: auto; padding: 6px 10px;">
+                X
+              </button>
+            </div>
+
+            <small *ngIf="tel.get('numero')?.touched && tel.get('numero')?.errors">
+
+              <span *ngIf="tel.get('numero')?.errors?.['required']">
+                Telefone obrigatório
+              </span>
+
+              <span *ngIf="tel.get('numero')?.errors?.['pattern']">
+                Digite apenas números
+              </span>
+
+            </small>
+
+          </div>
+        </div>
+
+        <!-- Botão adicionar -->
+        <button type="button"
+                (click)="adicionarTelefone()"
+                style="margin-top: 8px;">
+          + Adicionar telefone
+        </button>
+      </div>
+
+      <!-- Botão principal -->
+      <button
+        type="submit"
+        [disabled]="formAluno.invalid || formAluno.value.confirmarSenha !== formAluno.value.senha">
+        Cadastrar
+      </button>
+
+    </form>
+
+    <!-- Resultado -->
+    <div class="resultado" *ngIf="enviado">
+      <h2>Dados cadastrados:</h2>
+      <p><strong>Nome:</strong> {{ formAluno.value.nome }}</p>
+      <p><strong>Email:</strong> {{ formAluno.value.email }}</p>
+      
+      <p><strong>Telefones:</strong></p>
+      <ul>
+        <li *ngFor="let tel of formAluno.value.telefones">
+          {{ tel.numero }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

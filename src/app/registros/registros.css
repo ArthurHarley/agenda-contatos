@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #be86ff, #9557db);
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .card {
+    background: white;
+    width: 430px;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #973da3;
+  }
+  
+  .campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #973da3;
+  }
+  
+  input, select {
+    padding: 10px;
+    border: 2px solid #be86ff;
+    border-radius: 10px;
+  }
+  
+  small {
+    color: red;
+    margin-top: 4px;
+    font-size: 12px;
+  }
+  
+  .checkbox {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #be86ff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background: #be86ff;
+  }
+  
+  .resultado {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eedfff;
+    border-radius: 10px;
+  }
+
+  .telefone-item { 
+    display: flex; gap: 8px; 
+  }
+
+  .btn-pequeno { 
+    width: auto; padding: 6px 10px; 
+  }
