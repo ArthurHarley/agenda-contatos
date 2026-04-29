@@ -1,1 +1,45 @@
-<p>novo-contato works!</p>
+<div class="container">
+  <div class="card">
+    <h1>Adicionar Contato</h1>
+
+    <form [formGroup]="formAluno" (ngSubmit)="cadastrar()">
+
+      <!-- Nome -->
+      <div class="campo">
+        <label>Nome Completo *</label>
+        <input type="text" formControlName="nome">
+
+        <small *ngIf="formAluno.get('nome')?.invalid && formAluno.get('nome')?.touched">
+          Nome inválido (mínimo 3 caracteres)
+        </small>
+      </div>
+
+      <!-- Email -->
+      <div class="campo">
+        <label>E-mail *</label>
+        <input type="email" formControlName="email">
+
+        <small *ngIf="formAluno.get('email')?.invalid && formAluno.get('email')?.touched">
+          E-mail inválido
+        </small>
+      </div>
+
+      <!-- Telefone -->
+      <div class="campo">
+        <label>Telefone *</label>
+        <input type="text" formControlName="telefone">
+
+        <small *ngIf="formAluno.get('telefone')?.invalid && formAluno.get('telefone')?.touched">
+          Digite apenas números
+        </small>
+      </div>
+
+      <!-- Botão -->
+      <button type="submit" [disabled]="formAluno.invalid">
+        Cadastrar
+      </button>
+
+    </form>
+
+  </div>
+</div>

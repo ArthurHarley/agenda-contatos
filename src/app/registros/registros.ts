@@ -1,58 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registros',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule],
   templateUrl: './registros.html',
   styleUrl: './registros.css',
 })
 export class Registros {
 
-  formAluno: FormGroup;
-  enviado = false;
+  contatos: any[] = [];
 
-  constructor(private fb: FormBuilder) {
-    this.formAluno = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      telefones: this.fb.array([
-        this.criarTelefone()
-      ]),
-    });
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.carregarContatos();
   }
 
-  cadastrar() {
-    if (this.formAluno.valid) {
-      this.enviado = true;
+  carregarContatos() {
+    if (isPlatformBrowser(this.platformId)) {
+      const dados = localStorage.getItem('contatos');
+      this.contatos = dados ? JSON.parse(dados) : [];
     }
   }
 
-  criarTelefone(): FormGroup {
-    return this.fb.group({
-      numero: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[0-9]+$/)
-        ]
-      ]
+  editar(index: number) {
+    this.router.navigate(['/novo-contato'], {
+      queryParams: { index: index }
     });
   }
 
-  get telefones(): FormArray {
-    return this.formAluno.get('telefones') as FormArray;
-  }
+  confirmarRemocao(index: number) {
+    const confirmacao = confirm('Tem certeza que deseja excluir este contato?');
 
-  adicionarTelefone() {
-    this.telefones.push(this.criarTelefone());
-  }
-
-  removerTelefone(index: number) {
-    if (this.telefones.length > 1) {
-      this.telefones.removeAt(index);
+    if (confirmacao) {
+      this.remover(index);
     }
+  }
+
+  remover(index: number) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.contatos.splice(index, 1);
+      localStorage.setItem('contatos', JSON.stringify(this.contatos));
+    }
+  }
+
+  irParaNovo() {
+    this.router.navigate(['/novo-contato']);
   }
 }

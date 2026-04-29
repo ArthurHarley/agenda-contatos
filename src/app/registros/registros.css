@@ -1,85 +1,85 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #be86ff, #9557db);
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  
-  .card {
-    background: white;
-    width: 430px;
-    padding: 35px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  }
-  
-  h1 {
-    text-align: center;
-    color: #973da3;
-  }
-  
-  .campo {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  label {
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #973da3;
-  }
-  
-  input, select {
-    padding: 10px;
-    border: 2px solid #be86ff;
-    border-radius: 10px;
-  }
-  
-  small {
-    color: red;
-    margin-top: 4px;
-    font-size: 12px;
-  }
-  
-  .checkbox {
-    display: flex;
-    gap: 8px;
-    margin: 15px 0;
-  }
-  
-  button {
-    width: 100%;
-    padding: 12px;
-    background: #be86ff;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-  }
-  
-  button:disabled {
-    background: #be86ff;
-  }
-  
-  .resultado {
-    margin-top: 20px;
-    padding: 15px;
-    background: #eedfff;
-    border-radius: 10px;
-  }
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #be86ff, #9557db);
+}
 
-  .telefone-item { 
-    display: flex; gap: 8px; 
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-  .btn-pequeno { 
-    width: auto; padding: 6px 10px; 
-  }
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  width: 700px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+h1 {
+  text-align: center;
+  color: #973da3;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th {
+  color: #973da3;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 2px solid #be86ff;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background: #f7f1ff;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-add {
+  width: 100%;
+  padding: 12px;
+  background: #be86ff;
+  color: white;
+  border-radius: 12px;
+}
+
+.btn-editar {
+  background: #5ed28a;
+  color: white;
+}
+
+.btn-excluir {
+  background: #ff6b6b;
+  color: white;
+}
+
+.btn-adicionar {
+  background: #be86ff;
+  color: white;
+}
